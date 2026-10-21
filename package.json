@@ -3,7 +3,7 @@
   "productName": "Elegant",
   "version": "1.0.2",
   "private": true,
-  "description": "Elegant: yazılım projeleri, notlar ve görevler için masaüstü uygulama",
+  "description": "A desktop app for software projects, notes, and tasks",
   "license": "MIT",
   "homepage": "https://github.com/sahinsalih/elegant",
   "repository": {

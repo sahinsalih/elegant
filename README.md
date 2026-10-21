@@ -1,18 +1,25 @@
 # Elegant
 
-Yazılım projelerini, bu projelere bağlı notları ve görevleri bu bilgisayarda tutan masaüstü uygulaması. Hesap yok, veriler yerelde durur.
+A desktop app for software projects, notes, and tasks. No account. Your data stays on this computer.
 
-Arayüz Türkçe ve İngilizce. Görünüm açık, koyu veya sistem ayarını izler.
+The interface is available in Turkish and English. Appearance can follow the system, or stay light or dark.
 
-## Kurulum
+## Features
 
-Hazır kurulum dosyası her sürümle birlikte [Releases](https://github.com/sahinsalih/elegant/releases) sayfasında yayınlanır. Windows için `Elegant Setup x.y.z.exe` dosyasını indirip çalıştırın. Kurulum `C:\Program Files\Elegant` altına yapılır ve yönetici izni ister.
+- Projects in three groups: Work, Personal, and General
+- Pins, colors, and project settings
+- Notes and tasks, with formatted text
+- Collapsible panels and search
 
-Kayıtlar `%APPDATA%\Elegant` klasöründedir. Uygulamayı silmek bu klasörü silmez.
+## Install
 
-## Geliştirme
+Download the Windows installer from [Releases](https://github.com/sahinsalih/elegant/releases).
 
-Gerekenler: Node.js 22 ve npm.
+Setup installs Elegant to `C:\Program Files\Elegant` and asks for administrator permission. Notes and tasks are kept in `%APPDATA%\Elegant`. Uninstalling the app does not delete that folder.
+
+## Develop
+
+Requires Node.js 22.
 
 ```bash
 git clone https://github.com/sahinsalih/elegant.git
@@ -22,30 +29,14 @@ npm test
 npm start
 ```
 
-Kaynak düzeni:
-
-| Klasör | İçerik |
+| Path | What it holds |
 | --- | --- |
-| `src/` | Electron ana süreç, arayüz ve veri katmanı |
-| `assets/` | Uygulama ikonu ve logo |
-| `tests/` | Veri katmanı testleri |
+| `src/` | Electron main process, interface, and local data |
+| `assets/` | App icon and logo |
+| `tests/` | Data store tests |
 
-`npm start` geliştirme penceresini açar. `npm test` kayıt kurallarını çalıştırır. `npm run dist` Windows kurulum dosyasını `release/` içine üretir; bu klasör git ile izlenmez.
+`npm start` opens the app. `npm test` checks the store. `npm run dist` writes a Windows installer into `release/`, which is not committed.
 
-## Yeni sürüm yayınlama
+## License
 
-1. `package.json` içindeki `version` değerini yükseltin.
-2. Değişikliği commit edin.
-3. Aynı sürümle bir etiket gönderin:
-
-```bash
-git tag v1.0.3
-git push origin main
-git push origin v1.0.3
-```
-
-Etiket GitHub Actions üzerinden testi çalıştırır, kurulumu derler ve bu sürümü Releases sayfasına ekler. İndirilen dosyanın adı sürüme göredir.
-
-## Lisans
-
-MIT. Ayrıntı için `LICENSE` dosyasına bakın.
+[MIT](LICENSE)
