@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'" />
+  <title>Elegant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="i18n.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="side-label">
+        <span data-i18n="nav.projects">Projeler</span>
+        <button type="button" class="icon-button" id="new-project" data-i18n-title="nav.newProject" title="Yeni proje" aria-label="Yeni proje">
+          <svg viewBox="0 0 16 16">
+            <path d="M8 3.25v9.5M3.25 8h9.5"></path>
+          </svg>
+        </button>
+      </div>
+
+      <label class="search">
+        <span class="sr-only" data-i18n="nav.search">Proje ara</span>
+        <input id="project-search" type="search" data-i18n-placeholder="nav.searchPlaceholder" placeholder="Ara" autocomplete="off" />
+      </label>
+
+      <div id="project-list" class="project-list" role="list"></div>
+
+      <footer class="sidebar-foot">
+        <button type="button" class="settings-entry" id="open-settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span data-i18n="settings.entry">Sistem ayarları</span>
+        </button>
+      </footer>
+    </aside>
+
+    <main id="main">
+      <section id="empty" class="empty">
+        <img class="brand-logo" src="../assets/logo.jpg" alt="Elegant" />
+        <p class="eyebrow" data-i18n="empty.eyebrow">Başlangıç</p>
+        <h2 data-i18n="empty.title">İlk yazılım projeni ekle</h2>
+        <p data-i18n="empty.copy">Her proje kendi notlarını ve görevlerini birlikte tutar.</p>
+        <button type="button" class="primary" id="empty-new-project" data-i18n="empty.action">Proje ekle</button>
+      </section>
+
+      <section id="workspace" class="workspace" hidden>
+        <header id="project-head" class="project-head"></header>
+        <div id="boards" class="boards">
+          <section id="notes-panel" class="panel" aria-labelledby="notes-heading">
+            <header class="panel-head">
+              <div class="panel-title">
+                <h2 id="notes-heading" data-i18n="notes.title">Notlar</h2>
+                <span id="notes-count" class="count"></span>
+              </div>
+              <div class="panel-tools">
+                <button type="button" class="ghost" data-action="add-note" data-i18n="notes.add">Yeni not</button>
+                <button type="button" class="ghost panel-toggle" data-action="toggle-panel" data-panel="notes" aria-expanded="true">Gizle</button>
+              </div>
+            </header>
+            <div id="notes-list" class="panel-body"></div>
+          </section>
+
+          <section id="tasks-panel" class="panel" aria-labelledby="tasks-heading">
+            <header class="panel-head">
+              <div class="panel-title">
+                <h2 id="tasks-heading" data-i18n="tasks.title">Görevler</h2>
+                <span id="tasks-count" class="count"></span>
+              </div>
+              <div class="panel-tools">
+                <button type="button" class="ghost" data-action="add-task" data-i18n="tasks.add">Yeni görev</button>
+                <button type="button" class="ghost panel-toggle" data-action="toggle-panel" data-panel="tasks" aria-expanded="true">Gizle</button>
+              </div>
+            </header>
+            <div class="panel-sub">
+              <div class="filters" id="task-filters">
+                <button type="button" data-action="filter" data-filter="open" data-i18n="filter.open">Açık</button>
+                <button type="button" data-action="filter" data-filter="done" data-i18n="filter.done">Biten</button>
+                <button type="button" data-action="filter" data-filter="all" data-i18n="filter.all">Tümü</button>
+              </div>
+              <div id="task-progress" class="progress" hidden></div>
+            </div>
+            <div id="tasks-list" class="panel-body"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <button type="button" class="modal-backdrop" data-close aria-label="Kapat"></button>
+    <form id="modal-form" class="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title"></h2>
+      <p id="modal-copy" class="modal-copy" hidden></p>
+      <div id="modal-fields" class="fields"></div>
+      <footer class="dialog-actions">
+        <button type="button" class="ghost danger-text" id="modal-delete" data-settings-delete hidden>Projeyi sil</button>
+        <span class="dialog-spacer"></span>
+        <button type="button" class="ghost" data-close data-i18n="cancel">Vazgeç</button>
+        <button type="submit" class="primary" id="modal-submit">Kaydet</button>
+      </footer>
+    </form>
+  </div>
+
+  <div id="settings-modal" class="modal" hidden>
+    <button type="button" class="modal-backdrop" data-settings-close data-i18n-aria="close" aria-label="Kapat"></button>
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <img class="brand-logo is-compact" src="../assets/logo.jpg" alt="Elegant" />
+      <h2 id="settings-title" data-i18n="settings.title">Sistem ayarları</h2>
+      <div class="fields">
+        <label for="setting-locale">
+          <span data-i18n="settings.language">Dil</span>
+          <select id="setting-locale">
+            <option value="tr">Türkçe</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+        <div class="editor-field">
+          <span class="field-label" data-i18n="settings.appearance">Görünüm</span>
+          <div class="segment" id="theme-options" role="radiogroup">
+            <button type="button" role="radio" data-theme-value="light" data-i18n="theme.light">Açık</button>
+            <button type="button" role="radio" data-theme-value="dark" data-i18n="theme.dark">Koyu</button>
+            <button type="button" role="radio" data-theme-value="system" data-i18n="theme.system">Sistem</button>
+          </div>
+        </div>
+        <p class="settings-version" id="app-version">Sürüm 1.0.2</p>
+      </div>
+      <footer class="dialog-actions">
+        <span class="dialog-spacer"></span>
+        <button type="button" class="primary" data-settings-close data-i18n="close">Kapat</button>
+      </footer>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
