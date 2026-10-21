@@ -6,7 +6,7 @@ Arayüz Türkçe ve İngilizce. Görünüm açık, koyu veya sistem ayarını iz
 
 ## Kurulum
 
-Hazır kurulum dosyası her sürümle birlikte [Releases](../../releases) sayfasında yayınlanır. Windows için `Elegant Setup x.y.z.exe` dosyasını indirip çalıştırın. Kurulum `C:\Program Files\Elegant` altına yapılır ve yönetici izni ister.
+Hazır kurulum dosyası her sürümle birlikte [Releases](https://github.com/sahinsalih/elegant/releases) sayfasında yayınlanır. Windows için `Elegant Setup x.y.z.exe` dosyasını indirip çalıştırın. Kurulum `C:\Program Files\Elegant` altına yapılır ve yönetici izni ister.
 
 Kayıtlar `%APPDATA%\Elegant` klasöründedir. Uygulamayı silmek bu klasörü silmez.
 
@@ -15,7 +15,7 @@ Kayıtlar `%APPDATA%\Elegant` klasöründedir. Uygulamayı silmek bu klasörü s
 Gerekenler: Node.js 22 ve npm.
 
 ```bash
-git clone <bu-deponun-adresi>
+git clone https://github.com/sahinsalih/elegant.git
 cd elegant
 npm install
 npm test

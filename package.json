@@ -5,6 +5,14 @@
   "private": true,
   "description": "Elegant: yazılım projeleri, notlar ve görevler için masaüstü uygulama",
   "license": "MIT",
+  "homepage": "https://github.com/sahinsalih/elegant",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sahinsalih/elegant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sahinsalih/elegant/issues"
+  },
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
